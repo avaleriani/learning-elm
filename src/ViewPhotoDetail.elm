@@ -15,6 +15,6 @@ viewPhotoDetail model =
         , div [ class "photo-info" ]
             [ viewLoveButton model
             , h2 [ class "caption" ] [ text model.caption ]
+            , viewComments model
             ]
-        , viewComments model
         ]

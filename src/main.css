@@ -18,6 +18,11 @@ img {
     height: 20px;
     width: 20px;
     border: 1px solid black;
+    display: block;
+    margin: auto;
+}
+.photo-like{
+    height: 50px;
 }
 
 .fa-heart {

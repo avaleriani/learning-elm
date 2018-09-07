@@ -1,44 +1,48 @@
-module Main exposing (..)
+module Main exposing (baseUrl, initialModel, main, update, view)
 
-import ViewPhotoDetail exposing (..)
-import Html exposing (Html, div, h1, text)
+import Alias exposing (Model)
 import Browser exposing (document)
+import Html exposing (Html, div, h1, text)
 import Html.Attributes exposing (class)
+import Types exposing (Msg)
+import ViewPhotoDetail exposing (..)
+
+baseUrl : String
+baseUrl =
+    "/images/"
 
 
--- MODEL
-
-initialModel: {url: String, caption: String, liked: Bool}
+initialModel : Model
 initialModel =
-    {url = "/images/one.jpg"
-    , caption ="Surfing"
-    , liked = False}
+    { url = baseUrl ++ "one.jpg"
+    , caption = "Surfing"
+    , liked = False
+    , comments = [ "Leonardo", "Waluigi" ]
+    , newComment = ""
+    }
 
-view: {url: String, caption: String} -> Html Msg
+
+view : Model -> Html Msg
 view model =
     div []
-    [ div [ class "header" ]
-    [ h1 [] [text "picshare"] ]
+        [ div [ class "header" ]
+            [ h1 [] [ text "picshare" ] ]
         , div [ class "content-flow" ]
-        [ viewPhotoDetail model ]
-    ]
+            [ viewPhotoDetail model ]
+        ]
 
-type Msg
-    = Like
-    | Unlike
 
-update:
-    Msg
-    -> initialModel
-    -> initialModel
-
+update : Msg -> Model -> Model
 update msg model =
-    case msg of --
-        Like -> --
-            {model | liked = True}
-        Unlike ->
-            {model | liked = False}
+    case msg of
+        Types.ToggleLike ->
+            { model | liked = not model.liked }
 
-main: Program Never initialModel Msg
+
+main : Program () Model Msg
 main =
-   Html. initialModel
+    Browser.sandbox
+        { init = initialModel
+        , view = view
+        , update = update
+        }

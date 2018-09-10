@@ -1,6 +1,10 @@
-module Types exposing (..)
-import Alias exposing (..)
+module Types exposing (Msg(..))
 
-type Msg = ToggleLike
+import Alias exposing (..)
+import Http
+
+type Msg
+    = ToggleLike
     | UpdateComment String
     | SaveComment
+    | LoadFeed (Result Http.Error Feed)

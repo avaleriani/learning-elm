@@ -1,18 +1,18 @@
 module ViewLoveButton exposing (viewLoveButton)
 
-import Alias exposing (..)
+import Alias exposing (Photo)
 import Html exposing (Html, div, h2, i, img, text)
 import Html.Attributes exposing (class, src)
 import Html.Events exposing (onClick)
 import Types exposing (..)
 
 
-viewLoveButton : Model -> Html Msg
-viewLoveButton model =
+viewLoveButton : Photo -> Html Msg
+viewLoveButton photo =
     let
         buttonClass =
             --
-            if model.liked then
+            if photo.liked then
                 "fa-heart"
 
             else
@@ -23,7 +23,7 @@ viewLoveButton model =
             --
             [ class "fa" --
             , class buttonClass --
-            , onClick Types.ToggleLike --
+--            , onClick Types.ToggleLike --
             ]
             []
         ]

@@ -2,7 +2,7 @@ module ViewCommentList exposing (viewCommentList, viewComments)
 
 import Alias exposing (..)
 import Html exposing (Html, button, div, form, input, text, ul)
-import Html.Attributes exposing (class, placeholder, type_, value, disabled)
+import Html.Attributes exposing (class, disabled, placeholder, type_, value)
 import Html.Events exposing (onInput, onSubmit)
 import Types exposing (..)
 import ViewComment exposing (..)
@@ -21,19 +21,23 @@ viewCommentList comments =
                 ]
 
 
-viewComments : Model -> Html Msg
-viewComments model =
+viewComments : Photo -> Html Msg
+viewComments photo =
     div []
-        [ viewCommentList model.comments
-        , form [ class "new-comment"
-        ,onSubmit Types.SaveComment]
+        [ viewCommentList photo.comments
+        , form
+            [ class "new-comment"
+
+            --        ,onSubmit Types.SaveComment
+            ]
             [ input
                 [ type_ "text"
                 , placeholder "Add new comment"
-                , value model.newComment
-                , onInput Types.UpdateComment
+                , value photo.newComment
+
+                --                , onInput Types.UpdateComment
                 ]
                 []
-            , button [ disabled (String.isEmpty model.newComment)] [ text "Save" ]
+            , button [ disabled (String.isEmpty photo.newComment) ] [ text "Save" ]
             ]
         ]

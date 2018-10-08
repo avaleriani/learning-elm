@@ -328,7 +328,7 @@ viewBuild error model =
         ]
 
 
-viewConfirmation : Model -> Html msg
+viewConfirmation : Model -> Html Msg
 viewConfirmation model =
     div [ class "confirmation" ]
         [ h2 [] [ text "Woo hoo!" ]
@@ -375,10 +375,10 @@ viewStep model =
             viewBuild error model
 
         Sending ->
-            viewSending model
+            viewSending
 
         Confirmation ->
-            viewConfirmation
+            viewConfirmation model
 
 
 view : Model -> Html Msg

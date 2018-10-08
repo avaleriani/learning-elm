@@ -1,5 +1,3 @@
-.idea
-
 # Distribution
 build/
 
@@ -14,5 +12,3 @@ node_modules
 
 # Desktop Services Store on macOS
 .DS_Store
-
-refactoring/package-lock.json
